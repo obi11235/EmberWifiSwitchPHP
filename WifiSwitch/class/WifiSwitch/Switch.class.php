@@ -36,12 +36,12 @@ class WifiSwitch_Switch
 
 	function getState()
 	{
-		$this->_setupCurl();
+		$ch = curl_init();
 
-		curl_setopt($this->ch, CURLOPT_URL,'http://'.$this->ip.'/status');
-		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_URL,'http://'.$this->ip.'/status');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-		$response = curl_exec($this->ch);
+		$response = curl_exec($ch);
 
 		$this->_parseState($response);
 
@@ -123,18 +123,18 @@ class WifiSwitch_Switch
 		if($this->state == $state)
 			return true;
 
-		$this->_setupCurl();
+		$ch = curl_init();
 
-		curl_setopt($this->ch, CURLOPT_URL,'http://'.$this->ip.'/button/'.$this->channel);
-		curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, "PUT");
-		curl_setopt($this->ch, CURLOPT_HTTPHEADER, array( 
+		curl_setopt($ch, CURLOPT_URL,'http://'.$this->ip.'/button/'.$this->channel);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 
 			'Content-type: text/xml; charset="utf-8"',
 			'Content-length: 8'
 		    ));
-		curl_setopt($this->ch, CURLOPT_POSTFIELDS,'BUTTON='.$this->state);
-		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,'BUTTON='.$this->state);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
-		$response = curl_exec($this->ch);
+		$response = curl_exec($ch);
 
 		//$this->_parseState($response);
 /*
