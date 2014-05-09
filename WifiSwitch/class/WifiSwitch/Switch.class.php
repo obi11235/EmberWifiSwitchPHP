@@ -39,6 +39,7 @@ class WifiSwitch_Switch
 		$this->_setupCurl();
 
 		curl_setopt($this->ch, CURLOPT_URL,'http://'.$this->ip.'/status');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
 		$response = curl_exec($this->ch);
 
@@ -54,7 +55,7 @@ class WifiSwitch_Switch
 
 		$ch = curl_init();
 
-		curl_setopt($this->ch, CURLOPT_HTTPHEADER, array( 
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 
 			'Content-type: text/xml; charset="utf-8"'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
@@ -126,6 +127,7 @@ class WifiSwitch_Switch
 
 		curl_setopt($this->ch, CURLOPT_URL,'http://'.$this->ip.'/button/'.$this->channel);
 		curl_setopt($this->ch, CURLOPT_POSTFIELDS,'BUTTON='.$this->state);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
 		$response = curl_exec($this->ch);
 
