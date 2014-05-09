@@ -132,7 +132,7 @@ class WifiSwitch_Switch
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 
 			'Content-type: text/xml; charset="utf-8"',
-			'Content-length: 8'
+//			'Content-length: 8'
 		    ));
 		curl_setopt($ch, CURLOPT_POSTFIELDS,'BUTTON='.$this->state);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
