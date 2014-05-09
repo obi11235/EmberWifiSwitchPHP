@@ -10,10 +10,14 @@
 	$switch = new WifiSwitch_Switch($ip, 1);
 
 	echo 'State: '.$switch->getState().PHP_EOL;
+	$switch->closeConnection();
 	$switch->flipSwitch();
+	$switch->closeConnection();
 	sleep(3);
 	echo 'State: '.$switch->getState().PHP_EOL;
+	$switch->closeConnection();
 	$switch->flipSwitch();
+	$switch->closeConnection();
 	sleep(3);
 
 	$continue = true;

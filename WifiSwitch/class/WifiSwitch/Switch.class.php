@@ -126,6 +126,7 @@ class WifiSwitch_Switch
 		$this->_setupCurl();
 
 		curl_setopt($this->ch, CURLOPT_URL,'http://'.$this->ip.'/button/'.$this->channel);
+		curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_setopt($this->ch, CURLOPT_POSTFIELDS,'BUTTON='.$this->state);
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
 
