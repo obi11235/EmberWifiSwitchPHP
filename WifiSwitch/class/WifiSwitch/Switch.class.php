@@ -42,8 +42,7 @@ class WifiSwitch_Switch
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
 		$response = curl_exec($ch);
-		
-		echo curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 		curl_close($ch);
 
 		$this->_parseState($response);
@@ -121,8 +120,9 @@ class WifiSwitch_Switch
 
 	function setState($state)
 	{
-		$this->getState();
-
+		//Once the end is fixed to have the switch send a response back put this back in
+		//$this->getState();
+		
 		if($this->state == $state)
 			return true;
 
@@ -130,17 +130,19 @@ class WifiSwitch_Switch
 
 		curl_setopt($ch, CURLOPT_URL,'http://'.$this->ip.'/button/'.$this->channel);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 
-			'Content-type: text/xml; charset="utf-8"',
+//		curl_setopt($ch, CURLOPT_HTTPHEADER, array( 
+//			'Content-type: text/xml; charset="utf-8"',
 //			'Content-length: 8'
-		    ));
-		curl_setopt($ch, CURLOPT_POSTFIELDS,'BUTTON='.$this->state);
+//		    ));
+		curl_setopt($ch, CURLOPT_POSTFIELDS,'BUTTON='.$state);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 
 		$response = curl_exec($ch);
 
-		echo curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
+		
+		//remove this when the switch sends a response back
+		$this->getState();
 		
 		//$this->_parseState($response);
 /*
